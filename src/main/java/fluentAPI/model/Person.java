@@ -25,20 +25,22 @@ public class Person implements IPerson {
 
     @Override
     public IPerson sayHelloToFriends() {
-        // ToDo
+        for (Person friend : this.friends) {
+            System.out.println("Hello " + friend.name);
+        }
         return this;
     }
 
     @Override
     public IPerson processFriends(Function<List<Person>, List<Person>> processor) {
+//        processor = processor.andThen(x -> this.friends.removeAll(x));
         processor.apply(this.friends);
         return this;
     }
 
     @Override
     public IPerson chooseBestFriend(Function<List<Person>, Person> picker) {
-        Person bestFriend = picker.apply(this.friends);
-        return bestFriend;
+        return picker.apply(this.friends);
     }
 
     @Override
