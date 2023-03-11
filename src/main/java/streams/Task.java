@@ -3,6 +3,8 @@ package streams;
 import streams.model.Human;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.partitioningBy;
 
@@ -23,8 +25,9 @@ public class Task {
     }
 
     public static List<String> toUpperCase(List<String> collection) {
-        // ToDo
-        return null;
+        return collection.stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
     }
 
     public static List<String> transformOldJava(List<String> collection) {
@@ -38,8 +41,9 @@ public class Task {
     }
 
     public static List<String> transform(List<String> collection) {
-        // ToDo
-        return null;
+        return collection.stream()
+                .filter(x -> x.length() < 4)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -55,8 +59,8 @@ public class Task {
     }
 
     public static Map<String, Human> createMap(List<Human> collection) {
-        // ToDo
-        return null;
+        return collection.stream()
+                .collect(Collectors.toMap(Human::getName, Function.identity()));
     }
 
 
@@ -71,8 +75,7 @@ public class Task {
     }
 
     public static Human getOldestPerson(List<Human> people) {
-        // ToDo
-        return null;
+        return people.stream().sorted().findFirst().get();
     }
 
     /**

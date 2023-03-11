@@ -21,18 +21,18 @@ public class MainStreams {
         students.add(new Student("John", 1L, 3L));
         students.add(new Student("Barrack", 2L, 1L));
         List<String> names = new ArrayList<>();
-        for (Student student: students) {
-            if (student.getName ().startsWith("A")) {
-                names.add (student.getName ());
+        for (Student student : students) {
+            if (student.getName().startsWith("A")) {
+                names.add(student.getName());
             }
         }
 
         //Java 8, and above
-        List <String> namesNewJava = students.stream()
-                .map(student -> student.getName())
-                .filter (name-> name.startsWith("A"))
-                .collect (Collectors.toList());
-
+        List<String> namesNewJava = students.stream()
+//                .map(student -> student.getName())
+                .map(Student::getName)
+                .filter(name -> name.startsWith("A"))
+                .collect(Collectors.toList());
 
         //stream
         Stream.of("This", "is", "Java8", "Stream").forEach(System.out::println);
