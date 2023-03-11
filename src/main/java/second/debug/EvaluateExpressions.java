@@ -39,6 +39,6 @@ public class EvaluateExpressions {
 
         // OK now we can process the argument.
         // ... just kidding, I'm totally going to delete your precious objects.
-        list.set(index, null);
+        // list.set(index, null);
     }
 }

@@ -2,14 +2,13 @@ package second.debug.hidden;
 
 public class ObjectAnalyzer {
 
-
     public static boolean processElementAtIndex(final Object[] myArray,
                                                 final int i) {
         final Object o = myArray[i];
 
         if (o == null) {
-            System.out.println("Something is wrong with the " + (i + 1) + suffix(i +
-                    1) + " object... :(\n\n");
+            System.out.println("Something is wrong with the " + (i+1) +
+                    suffix(i+1) + " object... :(\n");
             return false;
         }
 
