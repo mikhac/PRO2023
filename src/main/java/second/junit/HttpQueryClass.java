@@ -13,10 +13,10 @@ import java.io.IOException;
 
 public class HttpQueryClass {
 
-    public String query() {
+    public String query(String url) {
         String result = "none";
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpGet request = new HttpGet("https://api.gios.gov.pl/pjp-api/rest/station/findAll");
+        HttpGet request = new HttpGet(url);
 
         // add request headers
         request.addHeader("custom-key", "programming");

@@ -10,9 +10,9 @@ import static org.assertj.core.api.Assertions.*;
 
 public class FrodoTest {
 
+    List<Creature> fellowshipOfTheRing = new ArrayList<Creature>();
     Creature frodo = new Creature("Frodo", 33L, Race.HOBBIT);
     Creature sauron = new Creature("Sauron", 10000L, Race.WIZARD);
-    List<Creature> fellowshipOfTheRing = new ArrayList<Creature>();
     Creature boromir = new Creature("Boromir", 37L, Race.MAN);
     Creature sam = new Creature("Sam", 38L, Race.HOBBIT);
     Creature merry = new Creature("Merry", 36L, Race.HOBBIT);
@@ -76,7 +76,7 @@ public class FrodoTest {
         // combining filtering and extraction (yes we can)
         assertThat(fellowshipOfTheRing).filteredOn(character -> character.getName().contains("o"))
                 .containsOnly(aragorn, frodo, legolas, boromir)
-                .extracting(character -> character.getRace())
+                .extracting(Creature::getRace)
                 .contains(Race.HOBBIT, Race.ELF, Race.MAN);
     }
 

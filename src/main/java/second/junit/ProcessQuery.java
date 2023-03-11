@@ -11,7 +11,7 @@ public class ProcessQuery {
     }
 
     public String process() {
-        return queryClass.query().toUpperCase();
+        return queryClass.query("https://api.gios.gov.pl/pjp-api/rest/station/findAll").toUpperCase();
     }
 
 }
