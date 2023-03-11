@@ -18,20 +18,33 @@ public class AdvanceMathTest {
 
     @Test
     public void additionTest() {
-        Integer a = math.addition(1, 4);
-        Assert.assertTrue(a == 5);
+        int a = math.addition(1, 4);
+        Assert.assertEquals(5, a);
     }
 
     @Test
     public void additionTestString() {
-        long a = math.addition("1", 4);
-        Assert.assertEquals(5L, a);
+        int a = math.addition("1", 4);
+        Assert.assertEquals(5, a);
     }
-
 
     @Test(expected = Exception.class)
     public void additionTestString2() {
         int a = math.addition("a1", 4);
     }
 
+    @Test
+    public void testAddition() {
+    }
+
+    @Test
+    public void testTestAddition() {
+    }
+
+    @Test(expected = Exception.class)
+    public void testMultiply() throws Exception {
+        int result = math.multiply(1000000000, 1000000000);
+        Assert.assertEquals(20, math.multiply(4, 5));
+        Assert.assertEquals(0, math.multiply(0, 5));
+    }
 }
