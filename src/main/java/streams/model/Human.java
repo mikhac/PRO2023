@@ -2,8 +2,8 @@ package streams.model;
 
 public class Human {
 
-    private String name;
-    private int age;
+    private final String name;
+    private final int age;
     private String nationality;
 
     public Human(final String nameValue, final int ageValue) {

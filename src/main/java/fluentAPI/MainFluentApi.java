@@ -11,10 +11,13 @@ public class MainFluentApi {
 
     public static void main(String[] args) {
 
-        //Package-private constructor is not accessible here, we must use the builder:
-        //Person p = new Person("a", Title.PROF);
+//        Package-private constructor is not accessible here, we must use the builder:
+//        Person p = new Person("a", Title.PROF);
 
         PersonBuilder personBuilder = new PersonBuilder();
+        PersonBuilder personBuilder2 = new PersonBuilder();
+
+        Person xd = personBuilder2.withName("xd").withTitle(Title.STUDENT).build();
 
         Person jose = personBuilder.withName("Jose").withTitle(Title.DR).build();
         Person miguel = personBuilder.withName("Miguel").withTitle(Title.DR).build();

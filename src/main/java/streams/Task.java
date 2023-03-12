@@ -75,7 +75,11 @@ public class Task {
     }
 
     public static Human getOldestPerson(List<Human> people) {
-        return people.stream().sorted().findFirst().get();
+        return people.stream()
+                .sorted(Comparator.comparing(Human::getAge).reversed())
+                .limit(1)
+                .findAny()
+                .get();
     }
 
     /**
@@ -95,8 +99,8 @@ public class Task {
 
     // use partitionBy
     public static Map<Boolean, List<Human>> partitionAdults(List<Human> people) {
-        // ToDo
-        return null;
+        return people.stream()
+                .collect(partitioningBy(person -> person.getAge() >= 18));
     }
 
     public static List<String> transformListOldJava(List<List<String>> collection) {
@@ -111,7 +115,8 @@ public class Task {
 
     //use flatMap
     public static List<String> transformList(List<List<String>> collection) {
-        // ToDo
-        return null;
+        return collection.stream()
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 }

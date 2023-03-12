@@ -1,6 +1,7 @@
 package fluentAPI.model;
 
 import fluentAPI.interfaces.IPerson;
+import fluentAPI.interfaces.Title;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ public class Person implements IPerson {
 
     List<Person> friends = new ArrayList<>();
     String name;
-    Enum title;
+    Title title;
 
     protected Person(String name, fluentAPI.interfaces.Title title) {
         this.name = name;
@@ -24,11 +25,8 @@ public class Person implements IPerson {
     }
 
     @Override
-    public IPerson sayHelloToFriends() {
-        for (Person friend : this.friends) {
-            System.out.println("Hello " + friend.name);
-        }
-        return this;
+    public void sayHelloToFriends() {
+        this.friends.forEach(friend -> System.out.println("Hello " + friend.name));
     }
 
     @Override

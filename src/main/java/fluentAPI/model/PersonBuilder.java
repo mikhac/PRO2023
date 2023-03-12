@@ -9,8 +9,7 @@ public class PersonBuilder implements IPersonBuilder {
     String name;
 
     public Person build() {
-        Person person = new Person(this.name, this.title);
-        return person;
+        return new Person(this.name, this.title);
     }
 
     @Override

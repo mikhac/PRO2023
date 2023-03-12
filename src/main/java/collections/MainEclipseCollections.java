@@ -1,10 +1,12 @@
 package collections;
 
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
+import org.eclipse.collections.impl.factory.Multimaps;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import streams.model.Human;
 
 import java.util.List;
+import java.util.stream.Collector;
 
 public class MainEclipseCollections {
 
@@ -14,11 +16,11 @@ public class MainEclipseCollections {
         citiesToPeople.put("Poznan", "Nowak");
         citiesToPeople.put("Poznan", "Kowalski");
 
-        citiesToPeople.get("Poznan").forEach(name -> System.out.println(name));
+        citiesToPeople.get("Poznan").forEach(System.out::println);
     }
 
     public static MutableListMultimap<Boolean, Human> partitionAdults(List<Human> collection) {
-        // ToDo
+//        MutableListMultimap<Boolean, Human> result = ;
         return null;
     }
 }

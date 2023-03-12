@@ -8,9 +8,8 @@ import java.util.function.Function;
 public interface IPerson {
 
     IPerson addFriend(Person friend);
-    IPerson sayHelloToFriends();
+    void sayHelloToFriends();
     IPerson processFriends(Function<List<Person>, List<Person>> processor);
     IPerson chooseBestFriend(Function<List<Person>, Person> picker);
     void print();
-
 }
