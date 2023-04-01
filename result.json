@@ -1,9 +1,9 @@
 {
   "id" : 0,
   "firstName" : "Jan",
-  "lastName" : "Polak-137114112",
+  "lastName" : "Polak-676309684",
   "salary" : 100,
-  "pesel" : 857241098,
+  "pesel" : 1810952176,
   "address" : {
     "id" : 0,
     "street" : "poznanska",
@@ -16,9 +16,9 @@
   "subworkers" : [ {
     "id" : 0,
     "firstName" : "Roman",
-    "lastName" : "Polak-734308257",
+    "lastName" : "Polak200546823",
     "salary" : 100,
-    "pesel" : 1769681312,
+    "pesel" : 1187473687,
     "address" : {
       "id" : 0,
       "street" : "poznanska",

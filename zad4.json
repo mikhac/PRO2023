@@ -1,9 +1,8 @@
-{
+[ {
+  "refId" : 1,
   "id" : 0,
-  "firstName" : "Jan",
-  "lastName" : "Polak-676309684",
-  "salary" : 200,
-  "pesel" : 1810952176,
+  "firstName" : "Roman",
+  "lastName" : "Polak-1835263139",
   "address" : {
     "id" : 0,
     "street" : "poznanska",
@@ -12,13 +11,12 @@
     "houseNr" : null,
     "postcode" : "99090"
   },
-  "managers" : [ ],
-  "subworkers" : [ {
+  "birthDate" : null,
+  "managers" : [ {
+    "refId" : 2,
     "id" : 0,
-    "firstName" : "Roman",
-    "lastName" : "Polak200546823",
-    "salary" : 100,
-    "pesel" : 1187473687,
+    "firstName" : "Jan",
+    "lastName" : "Polak8868238",
     "address" : {
       "id" : 0,
       "street" : "poznanska",
@@ -27,7 +25,11 @@
       "houseNr" : null,
       "postcode" : "99090"
     },
+    "birthDate" : null,
     "managers" : [ ],
-    "subworkers" : [ ]
-  } ]
-}
+    "subworkers" : [ 1 ],
+    "wynagrodzenie" : 100
+  } ],
+  "subworkers" : [ ],
+  "wynagrodzenie" : 100
+} ]

@@ -34,7 +34,7 @@ public class ModelObjectsCreator {
         return employees;
     }
 
-    public void init(){
+    public void init() {
         emp = new Employee();
         emp.setFirstName("Jan");
         emp.setLastName("Polak" + new Random().nextInt());
@@ -47,7 +47,7 @@ public class ModelObjectsCreator {
         emp2.setSalary(100);
         emp2.setPesel(Math.abs(new Random().nextInt()));
 
-        //add address
+        // add address
         Address address = new Address();
         address.setCity("Poznan");
         address.setStreet("poznanska");
@@ -58,18 +58,15 @@ public class ModelObjectsCreator {
         emp2.setAddress(address);
         emp.getSubworkers().add(emp2);
 
-        //This will give us infinite recursion
-        //emp2.getManagers().add(emp);
+        // This will give us infinite recursion
+        emp2.getManagers().add(emp);
 
         employees = new ArrayList<Employee>();
         employees.add(emp);
         employees.add(emp2);
-
     }
 
     public ModelObjectsCreator(){
         init();
     }
-
-
 }
