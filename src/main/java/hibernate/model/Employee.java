@@ -1,15 +1,19 @@
 package hibernate.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
 @Entity
-@Table(name = "EMPLOYEE", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"first_name","last_name"})})
+@Table(name = "EMPLOYEE",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"first_name","last_name"})}
+)
 public class Employee {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "id")
     private int id;
 
@@ -24,6 +28,13 @@ public class Employee {
 
     @Column(name = "PESEL", nullable = false, unique = true)
     private int pesel;
+
+    @ElementCollection
+    private List<String> phones = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="address_id")
+    private Address address;
 
     public Employee() {}
 
@@ -65,6 +76,14 @@ public class Employee {
 
     public void setPesel(int pesel) {
         this.pesel = pesel;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public static Employee copyEmployee(Employee emp) {
