@@ -50,6 +50,11 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
+    public Long countSumOfProductCosts(int sellerId) {
+        return sellerRepository.countSumOfProductCosts(sellerId);
+    }
+
+    @Override
     public Optional<Seller> getBestSeller() {
         double max = 0;
         int maxId = 0;
@@ -67,5 +72,4 @@ public class SellerServiceImpl implements SellerService {
         }
         return sellerRepository.findById(maxId);
     }
-
 }

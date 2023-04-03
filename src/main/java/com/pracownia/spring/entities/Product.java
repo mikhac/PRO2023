@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,6 +29,7 @@ public class Product {
     private String name;
 
     @Column
+    @Max(value = 6)
     private BigDecimal price;
 
     @Column(length = 1000)
@@ -36,9 +38,8 @@ public class Product {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Seller> sellers = new HashSet<>();
 
-    //required by Hibernate
+    // required by Hibernate
     public Product() {
-
     }
 
     public Product(String productId, String name, BigDecimal price, DateTime date) {

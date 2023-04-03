@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -24,7 +28,7 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-    private Logger logger = Logger.getLogger("Controller");
+    private final Logger logger = Logger.getLogger("Controller");
 
     /**
      * List all products.
@@ -32,6 +36,13 @@ public class ProductController {
     @GetMapping(value = "/products", produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Product> list(Model model) {
         return productService.listAllProducts();
+    }
+
+    @GetMapping(value = "/products/{page}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Product> list(@PathVariable("page") Integer pageNr,
+                                  @RequestParam(value = "size", required = false) Optional<Integer> howManyOnPage)
+    {
+        return productService.listAllProductsPaging(pageNr, howManyOnPage.orElse(2));
     }
 
     /**
@@ -58,7 +69,7 @@ public class ProductController {
      * Save product to database.
      */
     @PostMapping(value = "/product")
-    public ResponseEntity<Product> create(@RequestBody Product product) {
+    public ResponseEntity<Product> create(@RequestBody @NotNull @Valid Product product) {
         product.setProductId(UUID.randomUUID().toString());
         productService.saveProduct(product);
         return ResponseEntity.ok().body(product);
@@ -67,7 +78,7 @@ public class ProductController {
     @ExceptionHandler
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public String handleException(MethodArgumentNotValidException exception) {
-        return exception.getFieldError().toString();
+        return Objects.requireNonNull(exception.getFieldError()).toString();
     }
 
     /**
@@ -89,7 +100,8 @@ public class ProductController {
     @DeleteMapping(value = "/product/{id}")
     public RedirectView delete(@PathVariable Integer id) {
         productService.deleteProduct(id);
-        return new RedirectView("/api/productsList", true);
+//        return new RedirectView("/api/productsList", true);
+        return new RedirectView("/", true);
     }
 
     /**
@@ -104,8 +116,7 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "/products/{id}")
-    public ResponseEntity deleteBadRequest(@PathVariable Integer id) {
-        return new ResponseEntity(HttpStatus.FORBIDDEN);
+    public ResponseEntity<HttpStatus> deleteBadRequest(@PathVariable Integer id) {
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
-
 }

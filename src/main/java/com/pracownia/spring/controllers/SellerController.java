@@ -1,6 +1,7 @@
 package com.pracownia.spring.controllers;
 
 import com.pracownia.spring.entities.Seller;
+import com.pracownia.spring.repositories.SellerRepository;
 import com.pracownia.spring.services.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,9 +68,15 @@ public class SellerController {
         return sellerService.getBestSeller().get();
     }
 
-    @GetMapping(value = "/seller/{id}", produces = MediaType.APPLICATION_ATOM_XML_VALUE)
+    @GetMapping(value = "/seller/{id}", produces = MediaType.APPLICATION_XML_VALUE)
     @ResponseBody
-    public Seller getByPublicId(@PathVariable("id") Integer publicId) {
-        return sellerService.getSellerById(publicId).get();
+    public ResponseEntity<Seller> getByPublicId(@PathVariable("id") Integer publicId) {
+        Optional<Seller> seller = sellerService.getSellerById(publicId);
+        return seller.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping(value = "/seller/{sellerId}/sum")
+    public ResponseEntity<Long> countSumOfProductCosts(@PathVariable int sellerId) {
+        return ResponseEntity.ok(sellerService.countSumOfProductCosts(sellerId));
     }
 }
